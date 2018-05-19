@@ -1,6 +1,3 @@
-;;; Imports
-(load "src/Translator/lexer.scm")
-
 ;;; Main function. Passes data to lexer, receives
 ;;; translated code and saves it in a file
 ;;; This is simulation of an object

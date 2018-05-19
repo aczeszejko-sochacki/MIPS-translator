@@ -1,5 +1,8 @@
 ;;; Imports
 (load "src/Translator/translator.scm")
+(load "src/Translator/lexer.scm")
+(load "src/SplitString/split_string.scm")
+(load "src/Instructions/sub.scm")
 
 ;;; Make an instance of the traslator
 (define new-translator (
