@@ -1,7 +1,8 @@
 ;;; Imports
 (load "src/Translator/lexer.scm")
 
-;;; Main function. Translates MIPS code to Asembler code.
+;;; Main function. Passes data to lexer, receives
+;;; translated code and saves it in a file
 ;;; This is simulation of an object
 (define (translator input-file output-file)
 
@@ -24,11 +25,15 @@
         read-file))))
 
   ;;; Translates MIPS code
-  (define (translate-file)         
+  (define (translate-file)
+    (define new-lexer (lexer))    ; Instance of lexer
+         
     (if (null? input-file-content)
-      (error "Translating empty file")  ; Raise exception
+      (error "Translating empty file")    ; Raise exception
       (set! output-file-content 
-        (map lexer input-file-content))))  ; Lexer line by line
+      (map
+        (new-lexer 'translate-line)
+        input-file-content))))    ; Translates line by line 
 
   ;;; Writes translated code to file
   (define (write-to-file)
@@ -45,6 +50,7 @@
   (define (dispatch message)
     (cond ((eqv? message 'read-file) read-file)
           ((eqv? message 'translate-file) translate-file)
-          ((eqv? message 'write-to-file) write-to-file)))
+          ((eqv? message 'write-to-file) write-to-file)
+          ((eqv? message 'out) outp)))
 
 dispatch)

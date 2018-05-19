@@ -1,3 +1,4 @@
+;;; Imports
 (load "src/Translator/translator.scm")
 
 ;;; Make an instance of the traslator
