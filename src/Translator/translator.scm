@@ -23,13 +23,13 @@
 
   ;;; Translates MIPS code
   (define (translate-file)
-    (define new-lexer (lexer))    ; Instance of lexer
+    (define new-splitter (splitter))    ; Instance of splitter
          
     (if (null? input-file-content)
       (error "Translating empty file")    ; Raise exception
       (set! output-file-content 
       (map
-        (new-lexer 'translate-line)
+        (new-splitter 'translate-line)
         input-file-content))))    ; Translates line by line 
 
   ;;; Writes translated code to file
