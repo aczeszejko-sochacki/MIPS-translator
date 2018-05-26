@@ -1,5 +1,6 @@
 ;;; Splits line of code to instruction
 ;;; and operands
+
 ;;; This is simulation of an object
 (define (splitter)
 
@@ -20,13 +21,10 @@
     
     ;;; Instruction + operands
     (define to-translation
-      (append! (list (car words) operands)))
+      (append! (list (car words)) operands))
     
-    ;;; Passes splitted data and receives translated
-    (define (translate-operation)
-      to-translation)
-
-    (translate-operation))
+    ;; Passes splitted data and receives translated
+    (router to-translation))
 
   (define (dispatch message)
     (cond ((eqv? message 'translate-line) translate-line)))
