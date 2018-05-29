@@ -5,7 +5,8 @@
   (define first-letter (string-ref register 1))
 
   ;;; Number in code of the register
-  (define number 
+  (define number
+    ;; Registers ~match pattern: $[:lower:][:digit:]
     (char->digit (string-ref register 2)))
 
   ;;; Decode to decimal value  
@@ -24,8 +25,14 @@
       ((char=? first-letter #\s)
         (+ 16 number))
       ((char=? first-letter #\k)
-        (+ 26 number))))
-      ;; need to add t translation
+        (+ 26 number))
+      ((char=? first-letter #\t)
+        (if (< digit 8)
+          (+ 8 number)
+          (+ 16 number)))
+      ;; Variables match pattern 0x[[:digit:]]+
+      ((char=? first-letter #\x
+        (cddr register)))))    ; Cut '0x'
   
   ;; Decode to binary value on five bits
   (unsigned-integer->bit-string
