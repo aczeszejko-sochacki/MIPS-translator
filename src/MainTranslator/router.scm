@@ -20,7 +20,7 @@
   ;; Invoke proper translation
   (cond 
     ((member instruction register-instructions)
-      (translate-r command))
+      (translate command "r"))
     ((member instruction immediate-instructions)
-      (translate-i command))
+      (translate command "i"))
     (else (error "Incorrect MIPS Code"))))
