@@ -3,7 +3,7 @@
 (load "src/MainTranslator/splitter.scm")
 (load "src/MainTranslator/router.scm")
 (load "src/SplitString/split_string.scm")
-(load "src/LineTranslators/translate_r.scm")
+(load "src/LineTranslators/translate.scm")
 (load "src/LineTranslators/Codes/function_code.scm")
 (load "src/LineTranslators/Codes/register_code.scm")
 (load "src/LineTranslators/Codes/hexadecimal_code.scm")

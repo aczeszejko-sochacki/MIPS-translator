@@ -7,7 +7,12 @@
   (define function (decode-function (car command)))
   
   ;;; List of encoded registers
-  (define encoded-registers (cdr command))
+  (define encoded-registers
+    ;; Need to remove comment if existed
+    (append! 
+      (list (cadr command))
+      (list (caddr command))
+      (list (cadddr command))))
 
   ;; Decode registers
   (define decoded-registers
