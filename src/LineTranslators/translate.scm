@@ -20,17 +20,17 @@
 
   ;; List of decoded components (r version)
   (define decoded-components-r
-    (list
-      function
-      (make-bit-string 5 #f)
-      (car decoded-registers)
-      (caddr decoded-registers)
+    (string-append
+      (make-string 6 #\0)
       (cadr decoded-registers)
-      (make-bit-string 6 #f)))
+      (caddr decoded-registers)
+      (car decoded-registers)
+      (make-string 5 #\0)
+      function))
 
   ;;; List of decoded components (i version)
   (define decoded-components-i
-      (list
+      (string-append
         (car decoded-registers)
         (caddr decoded-registers)
         (cadr decoded-registers)
@@ -42,14 +42,5 @@
       decoded-components-r
       decoded-components-i))
 
+  (decode-binary decoded-components))
 
-  ;; Concatenated decoded components
-  (define whole-decoded-binary
-    (reduce-left 
-      bit-string-append
-      (make-bit-string 0 0)
-      decoded-components))
-
-  (decode-binary whole-decoded-binary))
-  
-  

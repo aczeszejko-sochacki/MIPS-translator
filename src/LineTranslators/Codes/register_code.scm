@@ -27,14 +27,20 @@
       ((char=? first-letter #\k)
         (+ 26 number))
       ((char=? first-letter #\t)
-        (if (< digit 8)
+        (if (< number 8)
           (+ 8 number)
           (+ 16 number)))
       ;; Variables match pattern 0x[[:digit:]]+
       ((char=? first-letter #\x
         (cddr register)))))    ; Cut '0x'
-  
-  ;; Decode to binary value on five bits
-  (unsigned-integer->bit-string
-    5
-    decimal-decoded-register))
+
+  ;;; Decode decimal to binary
+  (define binary-decoded-register
+    (number->string decimal-decoded-register 2))
+
+  ;; Return value aligned to 5 bits
+  (string-append 
+    (make-string 
+      (- 5 (string-length binary-decoded-register))
+      #\0)
+    binary-decoded-register))

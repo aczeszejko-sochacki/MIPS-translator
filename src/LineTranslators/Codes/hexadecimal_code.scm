@@ -3,16 +3,13 @@
 
   ;;; Decoded to hexadecimal
   (define decoded-hex 
-    (number->string 
-      (bit-string->signed-integer command) 
-      16))
+    (number->string (string->number command 2) 16))
 
-  ;;; Need to return value on 8 digits
-  (define additional-zeros
-    (make-string 
-      (- 8 (string-length decoded-hex)) 
-      #\0))
-
-  ;; Return final version of decoded command
+  ;; Need to return value on 8 digits
   (string-upcase 
-    (string-append additional-zeros decoded-hex)))
+    (string-append
+      (make-string
+        ( - 8 (string-length decoded-hex))
+        #\0)
+      decoded-hex)))
+

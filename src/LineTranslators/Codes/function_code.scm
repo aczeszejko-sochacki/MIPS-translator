@@ -40,10 +40,14 @@
       ((string=? function "xori") 14)
       ((string=? function "lui") 15)))
 
-  ;; Decode to binary value on six bits
-  (unsigned-integer->bit-string 
-    6 
-    decimal-decoded-function))
-    
+  ;;; Decode decimal to binary
+  (define binary-decoded-function
+    (number->string decimal-decoded-function 2))
 
+  ;; Return value aligned to 6 bits
+  (string-append
+    (make-string
+      (- 6 (string-length binary-decoded-function))
+      #\0)
+    binary-decoded-function))
   

@@ -7,11 +7,15 @@
 (load "src/LineTranslators/Codes/function_code.scm")
 (load "src/LineTranslators/Codes/register_code.scm")
 (load "src/LineTranslators/Codes/hexadecimal_code.scm")
+(load "src/LineTranslators/Codes/address_code.scm")
 
 ;;; Make an instance of the traslator
 (define new-translator (
-  translator "tests/test1a.txt" "out.txt"))
+  translator "tests/UnitTests/test1a.txt" "out.txt"))
 
+;;; Can both print result and save it in the
+;;; specified file
 ((new-translator 'read-file))
 ((new-translator 'translate-file))
-((new-translator 'write-to-file))
+((new-translator 'print-translated))
+((new-translator 'write-to-file ))
