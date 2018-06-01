@@ -34,13 +34,4 @@
       ((char=? first-letter #\x
         (cddr register)))))    ; Cut '0x'
 
-  ;;; Decode decimal to binary
-  (define binary-decoded-register
-    (number->string decimal-decoded-register 2))
-
-  ;; Return value aligned to 5 bits
-  (string-append 
-    (make-string 
-      (- 5 (string-length binary-decoded-register))
-      #\0)
-    binary-decoded-register))
+(dec-to-bin decimal-decoded-register 5))

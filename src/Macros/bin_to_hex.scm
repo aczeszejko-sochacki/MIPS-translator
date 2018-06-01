@@ -1,4 +1,5 @@
-;;; Decode bit-string to hexadecimal
+;;; Decode binary string 
+;;; to hexadecimal string on 8 digits
 (define (decode-binary command)
 
   ;;; Decoded to hexadecimal

@@ -1,6 +1,7 @@
 ;;; Adresses of commands
 (define (add-address input)
 
+  ;;; Indexes in "number" format
   (define numbers
     (map 
       (lambda (line) (number->string line 16))

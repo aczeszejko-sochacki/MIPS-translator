@@ -1,53 +1,50 @@
 ;;; Table of codes of the functions 
 (define (decode-function function)
-  
+
+  ;;; Helpful macro
+  (define (equal instruction)
+    (string=? function instruction))
+ 
   ;;; Decode to decimal value
   (define decimal-decoded-function
+  
     (cond
       ;; R function codes 
-      ((string=? function "add") 32)
-      ((string=? function "addu") 33)
-      ((string=? function "sub") 34)
-      ((string=? function "subu") 35)
-      ((string=? function "and") 36)
-      ((string=? function "or") 37)
-      ((string=? function "xor") 38)
-      ((string=? function "nor") 39)
-      ((string=? function "mult") 24)
-      ((string=? function "multu") 25)
-      ((string=? function "div") 26)
-      ((string=? function "divu") 27)
-      ((string=? function "mfhi") 16)
-      ((string=? function "mthi") 17)
-      ((string=? function "mflo") 18)
-      ((string=? function "mtlo") 19)
-      ((string=? function "slt") 42)
-      ((string=? function "sltu") 43)
-      ((string=? function "sll") 0)
-      ((string=? function "srl") 2)
-      ((string=? function "sra") 3)
-      ((string=? function "sllv") 4)
-      ((string=? function "srlv") 6)
-      ((string=? function "srav") 7)
+      ((equal "add") 32)
+      ((equal "addu") 33)
+      ((equal "sub") 34)
+      ((equal "subu") 35)
+      ((equal "and") 36)
+      ((equal "or") 37)
+      ((equal "xor") 38)
+      ((equal "nor") 39)
+      ((equal "mult") 24)
+      ((equal "multu") 25)
+      ((equal "div") 26)
+      ((equal "divu") 27)
+      ((equal "mfhi") 16)
+      ((equal "mthi") 17)
+      ((equal "mflo") 18)
+      ((equal "mtlo") 19)
+      ((equal "slt") 42)
+      ((equal "sltu") 43)
+      ((equal "sll") 0)
+      ((equal "srl") 2)
+      ((equal "sra") 3)
+      ((equal "sllv") 4)
+      ((equal "srlv") 6)
+      ((equal "srav") 7)
 
       ;; I function codes
-      ((string=? function "addi") 8)
-      ((string=? function "addiu") 9)
-      ((string=? function "slti") 10)
-      ((string=? function "sltiu") 11)
-      ((string=? function "andi") 12)
-      ((string=? function "ori") 13)
-      ((string=? function "xori") 14)
-      ((string=? function "lui") 15)))
+      ((equal "addi") 8)
+      ((equal "addiu") 9)
+      ((equal "slti") 10)
+      ((equal "sltiu") 11)
+      ((equal "andi") 12)
+      ((equal "ori") 13)
+      ((equal "xori") 14)
+      ((equal "lui") 15)))
 
   ;;; Decode decimal to binary
-  (define binary-decoded-function
-    (number->string decimal-decoded-function 2))
-
-  ;; Return value aligned to 6 bits
-  (string-append
-    (make-string
-      (- 6 (string-length binary-decoded-function))
-      #\0)
-    binary-decoded-function))
+(dec-to-bin decimal-decoded-function 6))
   

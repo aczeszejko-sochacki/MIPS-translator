@@ -59,8 +59,7 @@
     (set!
       output-content
       (string-append
-        ".text"
-        "\n"
+        ".text\n"
         (reduce-left string-append "" merged-lines))))
     
 

@@ -5,7 +5,9 @@
 (define (splitter line)
     
   ;;; List of words in line
-  (define words (split-string line " "))
+  ;;; Remove comment if existed
+  (define words 
+    (list-head (split-string line " ") 2))
     
   ;;; List of operands
   (define operands (split-string (cadr words) ","))
