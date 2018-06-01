@@ -25,9 +25,5 @@
              (+ 1 (car delimeter-indexes))))
         (set! delimeter-indexes (cdr delimeter-indexes))
         (split))))
-  
-  ;;; Invoke splitting
-  (define (dispatch message)
-    (if (eq? message 'split) split))
 
-dispatch)
+(split))

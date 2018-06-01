@@ -3,15 +3,14 @@
 ;;; machine code, returns machine code
 ;;; and saves it in a file
 ;;; This is simulation of an object
-(define (translator input-file output-file)
+(define (translator input-file)
 
-  ;;; Variables with content of input and output file
+  ;;; Variables with content of input and output
   (define input-file-content (list))
-  (define output-file-content)
+  (define output-content)
 
   ;;; I/O
   (define in (open-input-file input-file))
-  (define out (open-output-file output-file))
 
 	
   ;;; Writes content of input file to input-file-content
@@ -29,18 +28,13 @@
   ;;; Translates MIPS code to machine code
   (define (translate-file)
 
-    ;;; Instance of splitter
-    (define new-splitter (splitter))
-
     ;;; Addresses of commands
     (define addresses
       (add-address input-file-content))
 
-    ;;; Translated commands
+    ;;; Translated line by line commands
     (define translated
-      (map
-        (new-splitter 'translate-line)
-         input-file-content))    ; Translates line by line
+      (map splitter input-file-content))
 
     ;;; Need a delimeter between informations
     (define spaces
@@ -63,7 +57,7 @@
 
     ;;; Merged translated lines
     (set!
-      output-file-content
+      output-content
       (string-append
         ".text"
         "\n"
@@ -72,20 +66,12 @@
 
   ;;; Get output file content
   (define (print-translated) 
-    (display output-file-content))
-
-         
-  ;;; Writes translated code to file
-  (define (write-to-file)
-    (begin
-      (display output-file-content out)
-      (close-output-port out)))
+    (display output-content))
 
 
   (define (dispatch message)
     (cond ((eqv? message 'read-file) read-file)
           ((eqv? message 'translate-file) translate-file)
-          ((eqv? message 'write-to-file) write-to-file)
           ((eqv? message 'print-translated) print-translated)))
 
 dispatch)
