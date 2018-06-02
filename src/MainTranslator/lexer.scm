@@ -1,8 +1,6 @@
 ;;; Splits line of code to instruction
 ;;; and operands
-
-;;; This is simulation of an object
-(define (splitter line)
+(define (lexer line)
     
   ;;; List of words in line
   ;;; Remove comment if existed

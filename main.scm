@@ -1,7 +1,8 @@
 ;;; Imports
-(load "src/MainTranslator/translator.scm")
-(load "src/MainTranslator/splitter.scm")
+(load "src/MainTranslator/mips_code.scm")
+(load "src/MainTranslator/lexer.scm")
 (load "src/MainTranslator/router.scm")
+(load "src/MainTranslator/formatter.scm")
 (load "src/Macros/split_string.scm")
 (load "src/Macros/bin_to_hex.scm")
 (load "src/Macros/dec_to_bin.scm")
@@ -10,15 +11,15 @@
 (load "src/LineTranslators/Codes/register_code.scm")
 (load "src/LineTranslators/Codes/address_code.scm")
 
-;;; Read name of file to execute
+;;; Read name of the file to execute
 (define file-name 
   (string-append "tests/" (read)))
 
 ;;; Make an instance of the translator
-(define new-translator (translator file-name))
+(define new-mips-code (mips-code file-name))
 
 ;;; Can both print result and save it in the
 ;;; specified file
-((new-translator 'read-file))
-((new-translator 'translate-file))
-((new-translator 'print-translated))
+((new-mips-code 'read-file))
+((new-mips-code 'translate-file))
+((new-mips-code 'print-translated))

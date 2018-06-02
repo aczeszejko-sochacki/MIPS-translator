@@ -1,16 +1,16 @@
 ;;; Table of codes of the registers
 (define (decode-register register)
 
-  ;;; First letter is helpful in decoding
-  (define first-letter (string-ref register 1))
+  ;;; Register match pattern $[a..z][0..9]
+  (define (decimal-decoded-register-alpha)
 
-  ;;; Number in code of the register
-  (define number
-    ;; Registers ~match pattern: $[:lower:][:digit:]
-    (char->digit (string-ref register 2)))
+    ;;; First letter is helpful in decoding
+    (define first-letter (string-ref register 1))
 
-  ;;; Decode to decimal value  
-  (define decimal-decoded-register
+    ;;; Number in code of the register
+    (define number
+      (char->digit (string-ref register 2)))
+
     (cond
       ((string=? register "$zero") 0)
       ((string=? register "$at") 1)
@@ -29,9 +29,14 @@
       ((char=? first-letter #\t)
         (if (< number 8)
           (+ 8 number)
-          (+ 16 number)))
-      ;; Variables match pattern 0x[[:digit:]]+
-      ((char=? first-letter #\x
-        (cddr register)))))    ; Cut '0x'
+          (+ 16 number)))))
 
-(dec-to-bin decimal-decoded-register 5))
+  ;;; Register match pattern $[0..9][0..9]
+  (define decimal-decoded-register-numeric
+    (string->number (string-tail register 1)))
+
+
+  (if (char-numeric? (string-ref register 1))
+    (dec-to-bin decimal-decoded-register-numeric 5)
+    (dec-to-bin (decimal-decoded-register-alpha) 5)))
+
