@@ -4,7 +4,7 @@
   ;;; Indexes in "number" format
   (define numbers
     (map 
-      (lambda (line) (number->string line 16))
+      (lambda (line) (string-upcase (number->string line 16)))
       (iota (length input) 0 4)))    ; iota ~ linspace
   
   ;;; Need to return values on 8 digits
