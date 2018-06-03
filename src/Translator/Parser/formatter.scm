@@ -17,6 +17,18 @@
   ;;; Need a newline after each line
   (define newlines
     (make-list (length input-file-content) "\n"))
+
+  ;;; Need to delete comments
+  (define instruction
+    (map 
+      (lambda (line) (car (split-string line " ")))
+      input-file-content))
+
+  ;;; Need to delete comments
+  (define arguments
+    (map
+      (lambda (line) (cadr (split-string line " ")))
+      input-file-content))
   
   ;;; Merged words in lines
   (define merged-lines
@@ -26,7 +38,9 @@
       spaces
       translated
       spaces
-      input-file-content
+      instruction
+      spaces
+      arguments
       newlines))
  
   ;;; Merged translated lines
