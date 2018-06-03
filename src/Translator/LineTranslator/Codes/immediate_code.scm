@@ -1,5 +1,5 @@
 ;;; Table of codes of immediates
-(define (decode-immediate immediate)
+(define (decode-immediate immediate digits)
   
   ;;; Decode decimal immediate
   (define (decode-dec value)
@@ -8,7 +8,7 @@
         (signed-integer->bit-string 
           16 
           (string->number value)))
-       16))
+       digits))
 
   ;;; Decode hex immediate
   (define (decode-hex value)

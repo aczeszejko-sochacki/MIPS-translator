@@ -5,11 +5,14 @@
   ;;; Instruction name
   (define instruction (car command))
 
-  ;;; List of instructions rs-rt-rd
-  (define rs-rt-rd
+  ;;; List of instructions rd-rs-rt
+  (define rd-rs-rt
     (list "add" "addu" "sub" "subu"
-     "and" "or" "xor" "nor" "slt" "sltu"
-     "sllv" "srlv" "srav"))
+     "and" "or" "xor" "nor" "slt" "sltu"))
+
+  ;;; List of instructions rd-rt-rs
+  (define rd-rt-rs
+    (list "sllv" "srlv" "srav"))
 
   ;;; List of rs-rt-im-instructions
   (define rs-rt-im
@@ -17,7 +20,7 @@
       "lui" "slti" "sltiu"))
 
   ;;; List of shift-variable instructions
-  (define rt-rd-sa
+  (define rd-rt-sa
     (list "sll" "srl" "sra"))
 
   ;;; List of rs-rt instructions
@@ -34,12 +37,14 @@
 
   ;; Invoke proper translation
   (cond 
-    ((member instruction rs-rt-rd)
-      (translate-rs-rt-rd instruction (cdr command)))
+    ((member instruction rd-rs-rt)
+      (translate-rd-rs-rt instruction (cdr command)))
+    ((member instruction rd-rt-rs)
+      (translate-rd-rt-rs instruction (cdr command)))
     ((member instruction rs-rt-im)
       (translate-rs-rt-im instruction (cdr command)))
-    ((member instruction rt-rd-sa)
-      (translate-rt-rd-sa instruction (cdr command)))
+    ((member instruction rd-rt-sa)
+      (translate-rd-rt-sa instruction (cdr command)))
     ((member instruction rs-rt)
       (translate-rs-rt instruction (cdr command)))
     ((member instruction rd)
