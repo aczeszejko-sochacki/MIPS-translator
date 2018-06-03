@@ -33,5 +33,3 @@
   (string-append
     ".text\n"
     (reduce-left string-append "" merged-lines)))
-
-

@@ -1,0 +1,2 @@
+mfhi $t0
+mflo $fp

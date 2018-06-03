@@ -1,15 +1,16 @@
-;;; Imports
-(load "src/MainTranslator/mips_code.scm")
-(load "src/MainTranslator/lexer.scm")
-(load "src/MainTranslator/router.scm")
-(load "src/MainTranslator/formatter.scm")
+;t;; Imports
+(load "src/Translator/Parser/mips_code.scm")
+(load "src/Translator/Parser/lexer.scm")
+(load "src/Translator/Parser/router.scm")
+(load "src/Translator/Parser/formatter.scm")
 (load "src/Macros/split_string.scm")
 (load "src/Macros/bin_to_hex.scm")
 (load "src/Macros/dec_to_bin.scm")
-(load "src/LineTranslators/translate.scm")
-(load "src/LineTranslators/Codes/function_code.scm")
-(load "src/LineTranslators/Codes/register_code.scm")
-(load "src/LineTranslators/Codes/address_code.scm")
+(load "src/Translator/LineTranslator/line_translator.scm")
+(load "src/Translator/LineTranslator/Codes/function_code.scm")
+(load "src/Translator/LineTranslator/Codes/register_code.scm")
+(load "src/Translator/LineTranslator/Codes/address_code.scm")
+(load "src/Translator/LineTranslator/Codes/immediate_code.scm")
 
 ;;; Read name of the file to execute
 (define file-name 

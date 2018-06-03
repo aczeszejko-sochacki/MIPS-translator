@@ -1,0 +1,8 @@
+addi $12,$13,2894
+addiu $a1,$a2,1
+andi $a1,$a2,1111
+ori $s2,$s3,12
+xori $gp,$sp,1
+lui $gp,$sp,10
+slti $20,$21,1
+sltiu $30,$31,17

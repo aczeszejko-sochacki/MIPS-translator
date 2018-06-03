@@ -1,4 +1,0 @@
-and $3,$4,$5  # a comment
-or $1,$30,$27
-xor $5,$6,$7     # another comment
-nor $10,$11,$12,$13

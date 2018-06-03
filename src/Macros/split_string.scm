@@ -26,4 +26,6 @@
         (set! delimeter-indexes (cdr delimeter-indexes))
         (split))))
 
-(split))
+  (if (substring? delimeter line)
+      (split)
+      line))

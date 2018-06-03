@@ -1,0 +1,6 @@
+sll $12,$13,3
+srl $sp,$fp,1
+sra $at,$ra,15
+sllv $10,$11,$12
+srlv $a0,$a1,$a2
+srav $a0,$a1,$a2

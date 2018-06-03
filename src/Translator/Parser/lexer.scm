@@ -3,9 +3,8 @@
 (define (lexer line)
     
   ;;; List of words in line
-  ;;; Remove comment if existed
   (define words 
-    (list-head (split-string line " ") 2))
+    (split-string line " "))
     
   ;;; List of operands
   (define operands (split-string (cadr words) ","))
